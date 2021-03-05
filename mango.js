@@ -10,6 +10,7 @@ class Mango{
         this.y=y;
         this.r=r;
         this.image = loadImage("sprites/mango.png")
+        this.body= Bodies.rectangle(x,y,r,r);
         World.add(world, this.body);
     }
 

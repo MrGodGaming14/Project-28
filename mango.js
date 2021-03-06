@@ -10,7 +10,7 @@ class Mango{
         this.y=y;
         this.r=r;
         this.image = loadImage("sprites/mango.png")
-        this.body= Bodies.rectangle(x,y,r,r);
+        this.body= Bodies.rectangle(x,y,r,r, options);
         World.add(world, this.body);
     }
 
@@ -20,7 +20,7 @@ class Mango{
         translate(this.body.position.x, this.body.position.y);
         rotate(angle);
         imageMode(CENTER);
-        image(this.image, 0, 0, this.width, this.height);
+        image(this.image, 0, 0, 80, 80);
         pop();
       }
 }

@@ -31,7 +31,11 @@ function setup() {
 
 	slingshot = new SlingShot(stoneObj.body,{x:137, y:443});
 
-	mango = new Mango(50, 200, 10);
+	mango1 = new Mango(985, 265, 5);
+    mango2 = new Mango(1083, 228, 5);
+    mango3 = new Mango(1182, 236, 5);
+    mango4 = new Mango(1230, 120, 5);
+    mango5 = new Mango(1292, 251, 5);
 
 	boy = createSprite(247, 567, 1697 ,	2400)
 	boy.addImage(boyImage)
@@ -48,13 +52,28 @@ function draw() {
   
   
   drawSprites();
-  mango.display();
+  
   tree.display();
+
+  mango1.display();
+  mango2.display(); 
+  mango3.display();
+  mango4.display();
+  mango5.display();
+  
   stoneObj.display();
   ground.display();
 
   slingshot.display();
- 
+
+
+  detectCollision(stoneObj, mango1);
+  detectCollision(stoneObj, mango2);
+  detectCollision(stoneObj, mango3);
+  detectCollision(stoneObj, mango4);
+  detectCollision(stoneObj, mango5);
+
+  
 }
 
 function mouseDragged(){
@@ -66,4 +85,22 @@ function mouseDragged(){
 function mouseReleased(){
     slingshot.fly();
     gameState = "launched";
+}
+
+function keyPressed(){
+    if(keyCode === 32) {
+        Matter.body.setPosition(stoneObj.body, {x:235, y:420})
+        slingshot.attach(stoneObj.body);
+    }
+}
+
+
+function detectCollision(stone, mango){
+    mangoBodyPosition = mango.body.position
+    stoneBodyPosition = stoneObj.body.position
+
+    var distance =dist(stoneBodyPosition.x, stoneBodyPosition.y, mangoBodyPosition.x, mangoBodyPosition.y);
+    if (distance<=mango.r+stone.r){
+        Matter.body.setStatic(mango.body, false);
+    }
 }

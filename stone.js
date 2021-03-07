@@ -1,5 +1,6 @@
 class stone{
     constructor(x, y, width, height, angle) {
+        this.r=50;
         var options = {
             'restitution':0.8,
             'friction':1.0,
